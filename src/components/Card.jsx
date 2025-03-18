@@ -2,8 +2,9 @@ import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Redux/CartSlice";
+import { useSelector } from "react-redux";
 
-function Card({ id, name, price, description, img, ratings }) {
+function Card({ id, name, price, description, img, ratings, handleToast }) {
   const dispatch = useDispatch();
 
   return (
@@ -34,6 +35,7 @@ function Card({ id, name, price, description, img, ratings }) {
                 img,
               })
             );
+            handleToast(name);
           }}
           className=" text-sm p-1 text-white bg-green-500 hover:bg-green-600 rounded-lg"
         >
