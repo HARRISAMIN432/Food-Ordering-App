@@ -16,7 +16,7 @@ function Card({ id, name, price, description, img, ratings, handleToast }) {
       />
       <div className="text-sm flex justify-between">
         <h2>{name}</h2>
-        <span className="text-green-500">{price}</span>
+        <span className="text-green-500">Rs. {price}</span>
       </div>
       <p className="text-sm font-normal">{description.slice(0, 50)}...</p>
       <div className="flex justify-between">
@@ -37,7 +37,7 @@ function Card({ id, name, price, description, img, ratings, handleToast }) {
             );
             handleToast(name);
           }}
-          className=" text-sm p-1 text-white bg-green-500 hover:bg-green-600 rounded-lg"
+          className=" text-sm p-1 text-white bg-green-500 hover:bg-green-600 rounded-lg cursor-pointer"
         >
           Add to Cart
         </button>

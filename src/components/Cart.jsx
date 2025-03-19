@@ -3,11 +3,12 @@ import { IoMdClose } from "react-icons/io";
 import ItemInCart from "./ItemInCart";
 import { useSelector } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
-import { GiH2O } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  const [activeCart, setActiveCart] = useState(true);
+  const [activeCart, setActiveCart] = useState(false);
   const cartItems = useSelector((state) => state.cart.cart);
+  const navigate = useNavigate();
   const totalQty = cartItems.reduce((totalQty, item) => totalQty + item.qty, 0);
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.qty * item.price,
@@ -17,7 +18,7 @@ function Cart() {
   return (
     <>
       <div
-        className={`fixed right-0 top-0 w-full lg:w-[25vw] h-full p-5 bg-white mb-3 ${
+        className={`fixed right-0 top-0 w-full lg:w-[25vw] h-full p-5 bg-white mb-3 overflow-auto ${
           activeCart ? "translate-x-0" : "translate-x-full"
         } transition-all duration-500 z-50`}
       >
@@ -50,13 +51,16 @@ function Cart() {
           </h2>
         )}
 
-        <div className="absolute bottom-0">
+        <div className="bg-white py-3 shadow-md mt-30">
           <h3 className="font-semibold text-gray-800">Items: {totalQty}</h3>
           <h3 className="font-semibold text-gray-800">
             Total Amount: {totalPrice}
           </h3>
           <hr className="w-[90vw] lg:w-[22vw]" />
-          <button className="bg-green-500 font-bold px-3 text-white rounded-lg py-2 my-1 w-[90vw] lg:w-[22vw] hover:bg-green-600 cursor-pointer mb-5">
+          <button
+            onClick={() => navigate("/success")}
+            className="bg-green-500 font-bold px-3 text-white rounded-lg py-2 my-1 w-[90vw] lg:w-[22vw] hover:bg-green-600 cursor-pointer mb-5"
+          >
             Checkout
           </button>
         </div>
